@@ -18,7 +18,7 @@ public class ProductDTO {
     private int unitsAvailable;
     @Field("units_required")
     private int unitsRequired;
-    @Field("unit_price")
+    @Field("unit_price_dollar")
     private BigDecimal unitPrice;
 
     public ProductDTO() {}

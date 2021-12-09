@@ -26,11 +26,14 @@ public class UserRestController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/")
     public List<UserDTO> getAllUsers() {
+        System.out.println(ObjectMapperUtils.mapAll(userService.findAllUser(), UserDTO.class));
         return ObjectMapperUtils.mapAll(userService.findAllUser(), UserDTO.class);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/byUserId/{userName}")
     public UserDTO getUserByName(@PathVariable("userName") String userName) {
         if (userService.findByUsername(userName) == null) {
@@ -39,11 +42,13 @@ public class UserRestController {
         return ObjectMapperUtils.map(userService.findByUsername(userName), UserDTO.class);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/byUserIdAndPassword/{userName}/{password}")
     public UserDTO getUserByIdAndPassword(@PathVariable("userName") String userName, @PathVariable("password") String password) {
         return ObjectMapperUtils.map(userService.findByUsernameAndPassword(userName, password), UserDTO.class);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveNewUser(@RequestBody UserDTO userDTO) {
             if (this.getUserByName(userDTO.getUserName()) != null) {

@@ -21,22 +21,26 @@ public class ProductRestController {
     @Autowired
     private ProductService productService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/")
     public List<ProductDTO> getAllProducts() {
         return ObjectMapperUtils.mapAll(productService.findAll(), ProductDTO.class);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/byProductId/{productId}")
     public ProductDTO getProductById(@PathVariable("productId") String productId) {
         return ObjectMapperUtils.map(productService.findByProductId(productId), ProductDTO.class);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveProduct(@RequestBody ProductDTO productDTO) {
         productService.saveOrUpdateProduct(ObjectMapperUtils.map(productDTO, Product.class));
         return new ResponseEntity("Inventory added successfully", HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(value = "/delete/{productId}")
     public ResponseEntity<?> deleteProduct(@PathVariable String productId) {
         productService.deleteProductById(productId);

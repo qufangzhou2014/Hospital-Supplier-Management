@@ -10,7 +10,7 @@ public interface VendorService {
 
     Vendor findByVendorId(String vendorId);
 
-    Product purchaseProduct(String vendorId, String productId, int number);
+    Product purchaseProduct(String vendorId, String productId);
 
     Vendor createNewVendor(Vendor vendor);
 
