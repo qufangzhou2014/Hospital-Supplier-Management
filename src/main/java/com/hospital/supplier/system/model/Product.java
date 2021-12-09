@@ -17,10 +17,18 @@ public class Product {
     private int unitsAvailable;
     @Field("units_required")
     private int unitsRequired;
-    @Field("unit_price")
+    @Field("unit_price_dollar")
     private BigDecimal unitPrice;
 
     public Product() {}
+
+    public Product(String productId, String productName, int unitsAvailable, int unitsRequired, BigDecimal unitPrice) {
+        this.productId = productId;
+        this.productName = productName;
+        this.unitsAvailable = unitsAvailable;
+        this.unitsRequired = unitsRequired;
+        this.unitPrice = unitPrice;
+    }
 
 
     public String getId() {

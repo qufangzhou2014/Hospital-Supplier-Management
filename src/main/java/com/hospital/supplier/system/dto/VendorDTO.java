@@ -26,13 +26,37 @@ public class VendorDTO {
     private String contactNumber;
     @Field("contact_title")
     private String contactTitle;
+    @Field("contact_email")
     private String email;
+    @Field("contact_address")
     private String address;
     @Field("service_type")
     private String serviceType;
-    private List<Product> products;
+    @Field("product_id")
+    private String productId;
+    @Field("product_name")
+    private String productName;
+    @Field("unit_price_dollar")
+    private String unitPrice;
 
     public VendorDTO() {}
+
+    public VendorDTO(String id, String vendorId, String vendorName, String url, String contactFirstName, String contactLastname, String contactNumber, String contactTitle, String email, String address, String serviceType, String productId, String productName, String unitPrice) {
+        this.id = id;
+        this.vendorId = vendorId;
+        this.vendorName = vendorName;
+        this.url = url;
+        this.contactFirstName = contactFirstName;
+        this.contactLastname = contactLastname;
+        this.contactNumber = contactNumber;
+        this.contactTitle = contactTitle;
+        this.email = email;
+        this.address = address;
+        this.serviceType = serviceType;
+        this.productId = productId;
+        this.productName = productName;
+        this.unitPrice = unitPrice;
+    }
 
 
     public String getId() {
@@ -123,11 +147,28 @@ public class VendorDTO {
         this.serviceType = serviceType;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(String unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
 }

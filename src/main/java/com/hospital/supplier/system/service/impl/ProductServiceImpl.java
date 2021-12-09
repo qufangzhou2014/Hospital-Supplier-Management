@@ -27,7 +27,14 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product saveOrUpdateProduct(Product product) {
-        return productRepository.save(product);
+        if (this.findByProductId(product.getProductId()) != null) {
+            Product foundProduct = this.findByProductId(product.getProductId());
+            if (foundProduct.getUnitsRequired() > 0) {
+                foundProduct.setUnitsRequired(foundProduct.getUnitsRequired() - 1);
+            }
+            foundProduct.setUnitsAvailable(foundProduct.getUnitsAvailable() + 1);
+        }
+        return  productRepository.save(product);
     }
 
     @Override

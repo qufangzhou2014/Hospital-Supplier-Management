@@ -8,7 +8,10 @@ import com.hospital.supplier.system.model.Vendor;
 import com.hospital.supplier.system.service.VendorService;
 import com.hospital.supplier.system.model.Product;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 /**
  * @author Joe
@@ -40,16 +43,18 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public Product purchaseProduct(String vendorId, String productId, int number) {
-        Vendor vendor = vendorRepository.findByVendorId(vendorId);
-        Product product = vendor.getProducts().stream().filter(product1 -> productId.equals(product1.getId()))
-                .findAny().orElse(null);
-        if (product != null) {
-            for (int i = 0; i < number; i++) {
-                productRepository.save(product);
-            }
+    public Product purchaseProduct(String vendorId, String productId) {
+        Vendor vendor = vendorRepository.findByVendorIdAndProductId(vendorId, productId);
+        if (productRepository.findProductById(productId) != null) {
+            Product product = productRepository.findProductById(productId);
+            return product;
+        } else {
+            Random ran = new Random();
+            int x = ran.nextInt(11) + 5;
+            int y = ran.nextInt(6) + 5;
+            return new Product(productId, vendor.getProductName(),x, y,
+                    BigDecimal.valueOf(Double.valueOf(vendor.getUnitPrice())));
         }
-        return product;
     }
 
 }

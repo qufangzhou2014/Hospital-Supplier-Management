@@ -26,11 +26,18 @@ public class Vendor {
     private String contactNumber;
     @Field("contact_title")
     private String contactTitle;
+    @Field("contact_email")
     private String email;
+    @Field("contact_address")
     private String address;
     @Field("service_type")
     private String serviceType;
-    private List<Product> products;
+    @Field("product_id")
+    private String productId;
+    @Field("product_name")
+    private String productName;
+    @Field("unit_price_dollar")
+    private String unitPrice;
 
     public Vendor() {}
 
@@ -123,13 +130,30 @@ public class Vendor {
         this.serviceType = serviceType;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(String unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
 
     @Override
     public String toString() {
@@ -145,7 +169,9 @@ public class Vendor {
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", serviceType='" + serviceType + '\'' +
-                ", products=" + products +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", unitPrice='" + unitPrice + '\'' +
                 '}';
     }
 }

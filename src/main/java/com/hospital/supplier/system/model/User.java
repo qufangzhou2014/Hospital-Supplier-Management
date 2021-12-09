@@ -23,6 +23,7 @@ public class User {
     private String password;
     private String gender;
     private String address;
+    private String email;
     private String designation;
     @Field("phone_number")
     private String phoneNumber;
@@ -31,7 +32,8 @@ public class User {
 
     }
 
-    public User(String id, String userId, String userName, String firstName, String lastName, String password, String gender, String address, String designation, String phoneNumber) {
+    public User(String id, String userId, String userName, String firstName, String lastName, String password,
+                String gender, String address, String email, String designation, String phoneNumber) {
         this.id = id;
         this.userId = userId;
         this.userName = userName;
@@ -40,6 +42,7 @@ public class User {
         this.password = password;
         this.gender = gender;
         this.address = address;
+        this.email = email;
         this.designation = designation;
         this.phoneNumber = phoneNumber;
     }
@@ -109,6 +112,14 @@ public class User {
         this.address = address;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getDesignation() {
         return designation;
     }
@@ -136,6 +147,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", gender='" + gender + '\'' +
                 ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
                 ", designation='" + designation + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
