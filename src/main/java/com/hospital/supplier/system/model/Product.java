@@ -18,11 +18,11 @@ public class Product {
     @Field("units_required")
     private int unitsRequired;
     @Field("unit_price_dollar")
-    private BigDecimal unitPrice;
+    private int unitPrice;
 
     public Product() {}
 
-    public Product(String productId, String productName, int unitsAvailable, int unitsRequired, BigDecimal unitPrice) {
+    public Product(String productId, String productName, int unitsAvailable, int unitsRequired, int unitPrice) {
         this.productId = productId;
         this.productName = productName;
         this.unitsAvailable = unitsAvailable;
@@ -71,11 +71,11 @@ public class Product {
         this.unitsRequired = unitsRequired;
     }
 
-    public BigDecimal getUnitPrice() {
+    public int getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(int unitPrice) {
         this.unitPrice = unitPrice;
     }
 

@@ -19,7 +19,7 @@ public class ProductDTO {
     @Field("units_required")
     private int unitsRequired;
     @Field("unit_price_dollar")
-    private BigDecimal unitPrice;
+    private int unitPrice;
 
     public ProductDTO() {}
 
@@ -64,11 +64,11 @@ public class ProductDTO {
         this.unitsRequired = unitsRequired;
     }
 
-    public BigDecimal getUnitPrice() {
+    public int getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(int unitPrice) {
         this.unitPrice = unitPrice;
     }
 }
