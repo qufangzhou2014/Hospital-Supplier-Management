@@ -29,10 +29,14 @@ public class ProductServiceImpl implements ProductService{
     public Product saveOrUpdateProduct(Product product) {
         if (this.findByProductId(product.getProductId()) != null) {
             Product foundProduct = this.findByProductId(product.getProductId());
+            System.out.println(foundProduct);
             if (foundProduct.getUnitsRequired() > 0) {
                 foundProduct.setUnitsRequired(foundProduct.getUnitsRequired() - 1);
             }
             foundProduct.setUnitsAvailable(foundProduct.getUnitsAvailable() + 1);
+        } else {
+            product.setUnitsAvailable(1);
+            product.setUnitsRequired(0);
         }
         return  productRepository.save(product);
     }

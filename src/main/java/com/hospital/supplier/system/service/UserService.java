@@ -17,4 +17,6 @@ public interface UserService {
 
     User saveOrUpdateUser(User user);
 
+    void deleteUserById(String id);
+
 }

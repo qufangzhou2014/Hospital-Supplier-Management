@@ -43,17 +43,16 @@ public class VendorServiceImpl implements VendorService {
     }
 
     @Override
-    public Product purchaseProduct(String vendorId, String productId) {
-        Vendor vendor = vendorRepository.findByVendorIdAndProductId(vendorId, productId);
-        if (productRepository.findProductById(productId) != null) {
+    public Product purchaseProduct(String productId, String productName, int unitPrice) {
+        if (this.productRepository.findProductById(productId) != null) {
             Product product = productRepository.findProductById(productId);
+            if (product.getUnitsRequired() > 0) {
+                product.setUnitsRequired(product.getUnitsRequired() - 1);
+            }
+            product.setUnitsAvailable(product.getUnitsAvailable() + 1);
             return product;
         } else {
-            Random ran = new Random();
-            int x = ran.nextInt(11) + 5;
-            int y = ran.nextInt(6) + 5;
-            return new Product(productId, vendor.getProductName(),x, y,
-                    BigDecimal.valueOf(Double.valueOf(vendor.getUnitPrice())));
+            return new Product(productId, productName, 1, 0, unitPrice);
         }
     }
 

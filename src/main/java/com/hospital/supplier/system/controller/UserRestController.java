@@ -58,4 +58,19 @@ public class UserRestController {
                 return new ResponseEntity("User added successfully", HttpStatus.OK);
             }
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/update/{id}")
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO, @PathVariable("id") String id) {
+        userDTO.setId(id);
+        userService.saveOrUpdateUser(ObjectMapperUtils.map(userDTO, User.class));
+        return new ResponseEntity("User updated successfully", HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable("id") String id) {
+        userService.deleteUserById(id);
+        return new ResponseEntity("User deleted!",HttpStatus.OK);
+    }
 }
