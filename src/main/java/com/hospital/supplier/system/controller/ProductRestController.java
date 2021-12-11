@@ -1,6 +1,7 @@
 package com.hospital.supplier.system.controller;
 import com.hospital.supplier.system.dto.ProductDTO;
 import com.hospital.supplier.system.model.Product;
+import com.hospital.supplier.system.model.User;
 import com.hospital.supplier.system.service.ProductService;
 import com.hospital.supplier.system.util.ObjectMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class ProductRestController {
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/save")
     public ResponseEntity<?> saveProduct(@RequestBody ProductDTO productDTO) {
-        productService.saveOrUpdateProduct(ObjectMapperUtils.map(productDTO, Product.class));
+        productService.createNewProduct(ObjectMapperUtils.map(productDTO, Product.class));
         return new ResponseEntity("Inventory added successfully", HttpStatus.OK);
     }
 
@@ -45,5 +46,13 @@ public class ProductRestController {
     public ResponseEntity<?> deleteProduct(@PathVariable String productId) {
         productService.deleteProductById(productId);
         return new ResponseEntity("Inventory deleted successfully", HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/update/{id}")
+    public ResponseEntity<?> updateProduct(@RequestBody ProductDTO productDTO, @PathVariable("id") String id) {
+        productDTO.setId(id);
+        productService.saveOrUpdateProduct(ObjectMapperUtils.map(productDTO, Product.class));
+        return new ResponseEntity("Inventory updated successfully", HttpStatus.OK);
     }
 }
